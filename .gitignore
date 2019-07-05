@@ -1,6 +1,8 @@
-#ide stuff
-*.idea
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
+*.ipr
 
 #java stuff
 target
