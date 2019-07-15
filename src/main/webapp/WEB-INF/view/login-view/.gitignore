@@ -1,11 +1,4 @@
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### Java ###
-target
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 ### React JS ###
 /node_modules
