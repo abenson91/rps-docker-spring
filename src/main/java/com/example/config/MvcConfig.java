@@ -10,7 +10,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login.html");
-        registry.addViewController("/game.html");
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -27,6 +26,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/game.html")
                 .addResourceLocations("/WEB-INF/view/login-view/build/game.html");
     }
-
 
 }
