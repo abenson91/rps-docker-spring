@@ -3,7 +3,6 @@ package com.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,23 +18,43 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        /*http
+                .authorizeRequests()
+                .antMatchers("/built/**", "/main.css").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login.html")
+                .permitAll()
+                .defaultSuccessUrl("/rps.html", true)
+                .permitAll()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable()
+                .logout()
+                .logoutSuccessUrl("/login.html");*/
+
+
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
-                    .anyRequest()
-                    .authenticated()
+                .antMatchers("/built/**", "/main.css")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/index.html")
-                    .loginProcessingUrl("/perform_login")
-                    .defaultSuccessUrl("/game.html", true)
-                    .failureUrl("/index.html?error=true")
+                .formLogin()
+                .loginPage("/login.html")
+                .permitAll()
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/rps.html", true)
+                .failureUrl("/login.html?error=true")
                 .and()
-                    .logout()
-                    .logoutUrl("/perform_logout")
-                    .deleteCookies("JSESSIONID")
+                .logout()
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID")
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
     }
 
 

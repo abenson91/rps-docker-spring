@@ -2,19 +2,36 @@ package com.example.repository;
 
 import com.example.model.Game;
 import lombok.extern.slf4j.Slf4j;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
-@Configuration
 @Slf4j
-class LoadDatabase {
+@Profile("local")
+@Component
+class LoadDatabase implements CommandLineRunner {
 
-    @Bean
-    CommandLineRunner initDatabase(GameRepository repository) {
-        return args -> {
-            log.info("Preloading " + repository.save(new Game("user")));
-        };
+    private GameRepository repository;
+
+    @Autowired
+    public LoadDatabase(GameRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        log.info("Loading data base");
+
+        final String testId = "test1";
+
+        this.repository.findByUserName(testId).ifPresent(
+                game -> {
+                    log.info("Id existed, removing");
+                    repository.delete(game);
+                }
+        );
+        this.repository.save(new Game(testId, 1, 1, 1));
+        log.info("Database loaded -----------");
     }
 }

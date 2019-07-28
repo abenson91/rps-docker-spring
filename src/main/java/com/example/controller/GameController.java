@@ -1,39 +1,22 @@
 package com.example.controller;
 
-import com.example.model.Game;
-import com.example.service.GameRecordingService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
-@RestController
+@Controller
 public class GameController {
 
-    private final GameRecordingService service;
+    /*@RequestMapping(path = "/")
+    public String login() {
+        log.info("redirecting to login");
+        return "login";
+    }*/
 
-    @Autowired
-    public GameController(GameRecordingService service) {
-        this.service = service;
+    @RequestMapping(path = "/rps.html")
+    public String rps() {
+        log.info("redirecting to game");
+        return "rps";
     }
-
-    @RequestMapping(path = "/getLastGame/{userId}")
-    public Game getLastGameResult(@PathVariable String userId) {
-        log.info("Getting Game Data for " + userId);
-        return service.getLastGame(userId);
-    }
-
-    @PostMapping(path = "/saveGame")
-    public void saveGameResult(@RequestBody Game game) {
-        log.info("Posting Game data for " + game.toString());
-        service.saveGame(game);
-    }
-
-    @PostMapping(path = "/add")
-    public Game addData() {
-        log.info("Adding data");
-        Game game = new Game("user");
-        return service.saveGame(game);
-    }
-
 }

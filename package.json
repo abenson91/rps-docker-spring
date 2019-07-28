@@ -1,0 +1,36 @@
+{
+  "name": "rps-docker-spring-frontend",
+  "version": "0.1.0",
+  "description": "Demo of ReactJS + Spring Security and Redis all Dockerized",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:abenson91/rps-docker-spring.git"
+  },
+  "keywords": [
+    "rest",
+    "docker",
+    "spring",
+    "redis",
+    "react"
+  ],
+  "author": "Aaron Benson",
+  "homepage": "https://https://github.com/abenson91/rps-docker-spring",
+  "dependencies": {
+    "prop-types": "^15.5.7",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "rest": "^1.3.1",
+    "@babel/plugin-proposal-class-properties": "^7.5.5"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

@@ -1,33 +1,32 @@
 package com.example.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 
-@SuppressWarnings({"unused", "FieldCanBeLocal"}) //because of lombok
-@Data
+@Getter
+@Setter
 @RedisHash("Game")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Game implements Serializable {
 
-    public enum Result {
-        WIN,
-        LOSE,
-        DRAW,
-        NA
+    public Game(String userName, Integer wins, Integer losses, Integer draws) {
+        this.userName = userName;
+        this.wins = wins;
+        this.losses = losses;
+        this.draws = draws;
     }
 
-    public Game(String id) {
-        this.id = id;
-        this.result = Result.NA;
-        this.wins = 0;
-        this.losses = 0;
-        this.draws = 0;
-    }
-
-
-    private String id;
-    private Result result;
+    @Id private String id;
+    @Indexed private String userName;
     private Integer wins;
     private Integer losses;
     private Integer draws;
