@@ -43,6 +43,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!--OTHER DEPENDENCIES-->
@@ -91,6 +92,7 @@
                 <configuration>
                     <nodeVersion>v8.11.3</nodeVersion>
                     <npmVersion>6.1.0</npmVersion>
+                    <installDirectory>target</installDirectory>
                 </configuration>
                 <executions>
                     <execution>

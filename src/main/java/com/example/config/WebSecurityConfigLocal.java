@@ -38,7 +38,7 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/built/**", "/main.css")
+                .antMatchers("/built/**", "/*.css")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
